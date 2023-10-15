@@ -7,21 +7,22 @@ const Form = () => {
     const [couch, setCouch] = useState('');
     const [date, setDate] = useState('');
     const [time, setTime] = useState('');
-    // const tg = useTelegram();
-    const tg = window.Telegram.WebApp;
+    const tg = useTelegram();
+
+    console.log("tg", tg);
 
 
     useEffect(() => {
-        tg.MainButton.setParams({
+        tg.tg.MainButton.setParams({
             text: "Отправить данные"
         })
     }, [tg]);
 
     useEffect(() => {
         if (date || time) {
-            tg.MainButton.hide();
+            tg.tg.MainButton.hide();
         } else {
-            tg.MainButton.show();
+            tg.tg.MainButton.show();
         }
     }, [tg, date, time]);
 
