@@ -9,26 +9,21 @@ const Form = () => {
     const [time, setTime] = useState('');
     const tg = useTelegram();
 
-    console.log("tg", tg);
-    console.log("date", date);
-    console.log("time", time);
 
     const onSendData = useCallback(() => {
-        alert("hello");
         const data = {
             couch,
             date,
             time
         }
-        Telegram.WebApp.sendData(data);
-        alert(Telegram.WebApp)
+        Telegram.WebApp.sendData(JSON.stringify(data));
     }, [couch, date, time]);
 
     useEffect(() => {
         console.log("@@", Telegram.WebApp);
         Telegram.WebApp.onEvent('mainButtonClicked', onSendData);
         return () => {
-            Telegram.WebApp.offEvent('mainButtonClicked', onSendData)
+            Telegram.WebApp.offEvent('mainButtonClicked', onSendData);
         }
     }, [onSendData])
 
