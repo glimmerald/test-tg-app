@@ -9,19 +9,19 @@ const Form = () => {
     const [time, setTime] = useState('');
     const tg = useTelegram();
 
-    useEffect(() => {
-        tg.MainButton.setParams({
-            text: "Отправить данные"
-        })
-    }, []);
+    // useEffect(() => {
+    //     tg.MainButton.setParams({
+    //         text: "Отправить данные"
+    //     })
+    // }, []);
 
-    useEffect(() => {
-        if (!date || !time) {
-            tg.MainButton.hide();
-        } else {
-            tg.MainButton.show();
-        }
-    }, [date, time]);
+    // useEffect(() => {
+    //     if (!date || !time) {
+    //         tg.MainButton.hide();
+    //     } else {
+    //         tg.MainButton.show();
+    //     }
+    // }, [date, time]);
 
     const onChangeCouch = (e) => {
         setCouch(e.target.value);
