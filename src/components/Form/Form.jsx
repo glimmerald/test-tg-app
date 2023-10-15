@@ -12,19 +12,19 @@ const Form = () => {
     console.log("tg", tg);
 
 
-    // useEffect(() => {
-    //     tg.tg.MainButton.setParams({
-    //         text: "Отправить данные"
-    //     })
-    // }, [tg]);
+    useEffect(() => {
+        tg.tg.MainButton.setParams({
+            text: "Отправить данные"
+        })
+    }, [tg]);
 
-    // useEffect(() => {
-    //     if (date || time) {
-    //         tg.tg.MainButton.hide();
-    //     } else {
-    //         tg.tg.MainButton.show();
-    //     }
-    // }, [tg, date, time]);
+    useEffect(() => {
+        if (date || time) {
+            tg.tg.MainButton.hide();
+        } else {
+            tg.tg.MainButton.show();
+        }
+    }, [tg, date, time]);
 
     const onChangeCouch = (e) => {
         setCouch(e.target.value);
