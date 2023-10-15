@@ -16,14 +16,14 @@ const Form = () => {
             date,
             time
         }
-        Telegram.WebApp.sendData(JSON.stringify(data));
+        tg.tg.sendData(JSON.stringify(data));
     }, [couch, date, time]);
 
     useEffect(() => {
         console.log("@@", Telegram.WebApp);
-        Telegram.WebApp.onEvent('mainButtonClicked', onSendData);
+        tg.tg.onEvent('mainButtonClicked', onSendData);
         return () => {
-            Telegram.WebApp.offEvent('mainButtonClicked', onSendData);
+            tg.tg.offEvent('mainButtonClicked', onSendData);
         }
     }, [onSendData])
 
