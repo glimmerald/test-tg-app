@@ -10,6 +10,8 @@ const Form = () => {
     const tg = useTelegram();
 
     console.log("tg", tg);
+    console.log("date", date);
+    console.log("time", time);
 
 
     useEffect(() => {
@@ -19,7 +21,7 @@ const Form = () => {
     }, [tg]);
 
     useEffect(() => {
-        if (date || time) {
+        if (!date || !time) {
             tg.tg.MainButton.hide();
         } else {
             tg.tg.MainButton.show();
