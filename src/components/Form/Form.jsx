@@ -20,7 +20,8 @@ const Form = () => {
             date,
             time
         }
-        Telegram.WebApp.sendData(JSON.stringify(data));
+        Telegram.WebApp.sendData(new Date().toString());
+        alert(Telegram.WebApp)
     }, [couch, date, time]);
 
     useEffect(() => {
