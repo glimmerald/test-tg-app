@@ -7,7 +7,9 @@ const Form = () => {
     const [couch, setCouch] = useState('');
     const [date, setDate] = useState('');
     const [time, setTime] = useState('');
-    const tg = useTelegram();
+    // const tg = useTelegram();
+    const tg = window.Telegram.WebApp;
+
 
     useEffect(() => {
         tg.MainButton.setParams({
