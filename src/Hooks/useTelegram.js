@@ -14,11 +14,14 @@ export function useTelegram() {
         }
     }
 
+    console.log("@@@", tg)
+
 
     return {
         onToggleButton,
         onClose,
         tg,
         user: tg.initDataUnsafe?.user,
+        queryId: tg.initDataUnsafe?.query_id,
     }
 }
