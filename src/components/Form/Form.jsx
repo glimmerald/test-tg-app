@@ -14,6 +14,7 @@ const Form = () => {
     console.log("time", time);
 
     const onSendData = useCallback(() => {
+        alert("hello");
         const data = {
             couch,
             date,
