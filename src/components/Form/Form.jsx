@@ -19,7 +19,7 @@ const Form = () => {
             date,
             time
         }
-        tg.tg.sendData(JSON.stringify(date));
+        tg.tg.sendData(JSON.stringify(data));
     }, [])
 
     useEffect(() => {
