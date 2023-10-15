@@ -20,7 +20,7 @@ const Form = () => {
             date,
             time
         }
-        Telegram.WebApp.sendData(new Date().toString());
+        Telegram.WebApp.sendData(data);
         alert(Telegram.WebApp)
     }, [couch, date, time]);
 
@@ -28,7 +28,7 @@ const Form = () => {
         console.log("@@", Telegram.WebApp);
         Telegram.WebApp.onEvent('mainButtonClicked', onSendData);
         return () => {
-            Telegram.WebApp.onEvent('mainButtonClicked', onSendData)
+            Telegram.WebApp.offEvent('mainButtonClicked', onSendData)
         }
     }, [onSendData])
 
