@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
-import {useTelegram} from "../../Hooks/useTelegram";
+import { useTelegram } from "../../Hooks/useTelegram";
 import "./Form.css";
+import { addToDataBase } from "../../notion";
 
 
 const Form = () => {
@@ -20,7 +21,6 @@ const Form = () => {
     }, [couch, date, time]);
 
     useEffect(() => {
-        console.log("@@", Telegram.WebApp);
         tg.tg.onEvent('mainButtonClicked', onSendData);
         return () => {
             tg.tg.offEvent('mainButtonClicked', onSendData);
@@ -54,19 +54,33 @@ const Form = () => {
         setTime(e.target.value);
     };
 
+    console.log("{date}:", {date});
+
+
+
+    const formSubmit = async (event) => {
+        event.preventDefault();
+        const myDate = document.getElementById("inputDateId").value;
+        const myCouch = document.getElementById("inputCouchId").value;
+        const myTime = document.getElementById("inputMinutesId").value;
+        const isoDate = new Date(myDate).toISOString();
+        const notionResponse = await addToDataBase({couch}, isoDate, myTime);
+    }
+
     return (
-        <div className="form">
+        <form className="form" onSubmit={formSubmit}>
             <h3 className="form-title">Введите ваши данные</h3>
-            <select className="select" value={couch} onChange={onChangeCouch}>
+            <select id="inputCouchId" className="select" value={couch} onChange={onChangeCouch}>
                 <option className="option">Тренер 1</option>
                 <option className="option">Тренер 2</option>
                 <option className="option">Тренер 3</option>
                 <option className="option">Тренер 4</option>
                 <option className="option">Тренер 5</option>
             </select>
-            <input className="input" type="text" placeholder="Дата" value={date} onChange={onChangeDate} />
-            <input className="input" type="number" placeholder="Количество минут" value={time} onChange={onChangeTime} />
-        </div>
+            <input className="input" id="inputDateId" type="date" placeholder="Дата" value={date} onChange={onChangeDate} />
+            <input className="input" id="inputMinutesId" type="number" placeholder="Количество минут" value={time} onChange={onChangeTime} />
+            <input type="submit" />
+        </form>
     );
 };
 
